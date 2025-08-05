@@ -1,0 +1,141 @@
+// basic class n object
+class Car {
+    String brand;
+    int year;
+
+    void displayInfo() {
+        System.out.println("Brand: " + brand + ", Year: " + year);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.brand = "Toyota";
+        myCar.year = 2020;
+
+        myCar.displayInfo();  // Output: Brand: Toyota, Year: 2020
+    }
+}
+
+
+// encapsulation
+class Student {
+    private String name;
+    private int age;
+
+    // Setter
+    public void setName(String newName) {
+        name = newName;
+    }
+
+    // Getter
+    public String getName() {
+        return name;
+    }
+
+    public void setAge(int newAge) {
+        age = newAge;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student();
+        s1.setName("John Doe");
+        s1.setAge(20);
+
+        System.out.println(s1.getName() + " is " + s1.getAge() + " years old.");
+    }
+}
+
+// inheritance
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.sound();  // Output: Dog barks
+    }
+}
+
+
+// polymorphism
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Cat extends Animal {
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+class Dog extends Animal {
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal a1 = new Cat();
+        Animal a2 = new Dog();
+
+        a1.sound();  // Output: Cat meows
+        a2.sound();  // Output: Dog barks
+    }
+}
+
+
+// abstract
+abstract class Shape {
+    abstract void draw();
+}
+
+class Circle extends Shape {
+    void draw() {
+        System.out.println("Drawing Circle");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape s = new Circle();
+        s.draw();  // Output: Drawing Circle
+    }
+}
+
+// interface
+interface Printable {
+    void print();
+}
+
+class Document implements Printable {
+    public void print() {
+        System.out.println("Printing Document");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Printable p = new Document();
+        p.print();  // Output: Printing Document
+    }
+}
