@@ -1,0 +1,86 @@
+Oke! Kalau fokus ke Java, ini dia macam-macam bentuk Declarative Programming yang sering dipakai di Java:
+
+1. Stream API
+Memproses collection (List, Set, dsb) dengan cara deklaratif.
+
+Contoh:
+
+java
+Salin kode
+List<String> names = Arrays.asList("Sasa", "Rani", "Budi");
+names.stream()
+     .filter(name -> name.startsWith("S"))
+     .forEach(System.out::println);
+➔ Kamu tinggal bilang "saring yang diawali S", tanpa bikin loop.
+
+2. Lambda Expressions
+Fungsi anonim yang mendeklarasikan behavior langsung.
+
+Biasanya dipakai barengan dengan Stream API atau Functional Interface.
+
+Contoh:
+
+java
+Salin kode
+(x, y) -> x + y
+3. Optional API
+Mendeklarasikan cara penanganan nilai yang bisa null, tanpa if-else manual.
+
+Contoh:
+
+java
+Salin kode
+Optional<String> name = Optional.ofNullable(getName());
+name.ifPresent(n -> System.out.println("Hello, " + n));
+4. Annotation-based Configurations (Spring Framework, Jakarta EE)
+Kamu mendeklarasikan perilaku lewat anotasi, framework yang ngurus logikanya.
+
+Contoh (Spring Boot):
+
+java
+Salin kode
+@RestController
+public class UserController {
+    @GetMapping("/users")
+    public List<User> getUsers() {
+        return userService.getAllUsers();
+    }
+}
+5. Method Reference (Declarative alternative ke Lambda)
+Cara lebih ringkas deklarasi method yang dipanggil.
+
+Contoh:
+
+java
+Salin kode
+names.forEach(System.out::println);
+6. Functional Interfaces (java.util.function)
+Interface dengan satu abstract method, yang sering dipakai untuk deklaratif style.
+
+Contoh: Predicate<T>, Function<T, R>, Consumer<T>, Supplier<T>.
+
+Contoh:
+
+java
+Salin kode
+Predicate<String> isEmpty = s -> s.isEmpty();
+7. Collectors (Stream Collecting Result)
+Mendeklarasikan cara menggabungkan hasil stream.
+
+Contoh:
+
+java
+Salin kode
+List<String> upperNames = names.stream()
+                               .map(String::toUpperCase)
+                               .collect(Collectors.toList());
+                               
+Ringkasannya:
+Declarative di Java	Dipakai Untuk
+Stream API	Memproses Collection tanpa loop manual
+Lambda Expression	Mendeklarasikan behavior langsung
+Optional API	Handling null tanpa if-else
+Annotation-based Configuration	Mendeklarasikan konfigurasi via annotation (Spring, dsb)
+Method Reference	Shortcut deklaratif pemanggilan method
+Functional Interfaces	Definisi behavior function-style
+Collectors	Mendefinisikan cara hasil Stream dikembalikan

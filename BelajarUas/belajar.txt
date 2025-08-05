@@ -1,0 +1,94 @@
+===== POLYMORPHISM =====
+
+1. Konsep Polymorphism-nya:
+Polymorphism artinya "banyak bentuk". Dalam konteks OOP:
+
+Satu referensi objek (tipe induk) bisa merujuk ke berbagai bentuk objek (tipe turunan).
+
+Method yang sama (login(), logout()) bisa memiliki perilaku berbeda tergantung objeknya (misal: Admin atau Customer).
+
+2. Studi Kasus: Sistem Login
+Kita punya:
+
+Class User (induk)
+
+Class Admin, Customer (subclass, pewarisan)
+
+Method umum: login(), logout().
+
+Polymorphism terjadi saat:
+Kita membuat referensi bertipe User, tapi diisi objek dari subclass:
+
+java
+Salin
+Edit
+User u1 = new Admin();
+User u2 = new Customer();
+Lalu kita memanggil method yang sama:
+
+java
+Salin
+Edit
+u1.login(); // Akan memanggil login() versi Admin
+u2.login(); // Akan memanggil login() versi Customer
+Jika method login() dan logout() di-overriding di subclass, maka:
+
+Admin akan punya cara login sendiri (misal: harus verifikasi OTP)
+
+Customer akan punya cara login biasa (misal: username & password)
+
+Inilah runtime polymorphism (dynamic dispatch) — method mana yang dipanggil ditentukan saat program berjalan.
+
+3. Simpelnya:
+Kode	Hasilnya
+User u = new Admin(); u.login();	Memanggil method login() versi Admin
+User u = new Customer(); u.login();	Memanggil method login() versi Customer
+Polymorphism:	Satu referensi User -> bisa "berubah bentuk" jadi Admin/Customer
+
+4. Contoh Kode Simpel:
+java
+Salin
+Edit
+class User {
+    public void login() {
+        System.out.println("User login");
+    }
+    public void logout() {
+        System.out.println("User logout");
+    }
+}
+
+class Admin extends User {
+    @Override
+    public void login() {
+        System.out.println("Admin login with OTP verification");
+    }
+}
+
+class Customer extends User {
+    @Override
+    public void login() {
+        System.out.println("Customer login with username and password");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        User u1 = new Admin();
+        User u2 = new Customer();
+
+        u1.login();  // Polymorphism: Panggil Admin's login()
+        u2.login();  // Polymorphism: Panggil Customer's login()
+    }
+}
+
+5. Intinya:
+Polymorphism terjadi karena:
+
+Overriding method di subclass.
+
+Objek diakses melalui referensi tipe induk.
+
+Polymorphism bikin program lebih fleksibel & scalable.
+
+Tambah subclass baru? Ga perlu ubah kode yang pakai User!
