@@ -1,0 +1,216 @@
+### Apa itu OOP (Object-Oriented Programming)?
+
+Paradigma pemrograman yang berfokus pada objek dan class. OOP memungkinkan pengorganisasian kode ke dalam entitas nyata.
+
+### Mengapa OOP penting dalam Java?
+
+Java adalah bahasa berbasis OOP secara default. Menggunakan OOP memungkinkan pembuatan kode yang modular, reusable, dan mudah dipelihara. Yang paling berguna adalah kodenya reusable
+### 4 Pilar Utama OOP:
+
+* **Inheritance**: Pewarisan class (extends)
+* **Polymorphism**: Banyak bentuk dari 1 objek (misal Buah a = new Apple())
+* **Encapsulation**: Menyembunyikan data
+* **Generics**: Tipe data fleksibel
+
+### Tujuan OOP:
+
+* Modularitas
+* Reusable code
+* Maintainability
+
+## RANGKUMAN PER PILAR OOP
+
+### 1. Inheritance
+
+* **Definisi**: Pewarisan atribut & metode dari superclass ke subclass
+* **Keyword**: `extends`
+* **Contoh**:
+
+```java
+class Animal {}
+class Dog extends Animal {}
+```
+
+* **Manfaat**: Reuse code antar class, struktur hierarki
+
+### 2. Polymorphism
+
+* **Definisi**: Objek memiliki banyak bentuk
+* **Keyword**: `override`
+* **Contoh**:
+
+```java
+Animal a = new Dog();
+a.speak(); // bisa beda output tergantung class
+```
+
+* **Manfaat**: Interchangeable object, flexible code
+
+### 3. Encapsulation
+
+* **Definisi**: Menyembunyikan data melalui akses kontrol
+* **Keyword**: `private`, getter/setter
+* **Contoh**:
+
+```java
+private int age;
+public int getAge() { return age; }
+```
+
+* **Manfaat**: Menjaga validitas data, membatasi akses langsung
+
+### 4. Generics
+
+* **Definisi**: Class/metode dengan tipe data fleksibel
+* **Keyword**: `<T>`
+* **Contoh**:
+
+```java
+class Box<T> { T item; }
+```
+
+* **Manfaat**: Reusable class, type-safe collections
+jadi kita bisa akses apa aja asalkan tipe datanya itu turunan dari T
+
+## RELASI ANTAR KONSEP
+
+* **Inheritance & Polymorphism**: subclass mewarisi metode, dapat override
+* **Encapsulation dalam subclass**: tetap penting agar subclass tidak akses langsung data
+* **Generics**: memperluas kemampuan class agar bisa menangani banyak tipe objek
+
+## CONTOH MINI STUDI KASUS
+
+### Studi Kasus: Sistem Login
+
+* `User` (class induk)
+* `Admin`, `Customer` (subclass)
+* `login()`, `logout()` (metode umum)
+
+**Konsep yang muncul:**
+
+* Inheritance: `Admin` dan `Customer` mewarisi dari `User`
+* Polymorphism: `login()` diubah oleh `Admin`
+* Encapsulation: password disembunyikan
+
+---
+
+## TABEL PERBANDINGAN PILAR OOP
+
+| Konsep        | Tujuan                     | Keyword    | Contoh Sederhana    |
+| ------------- | -------------------------- | ---------- | ------------------- |
+| Inheritance   | Pewarisan class            | `extends`  | `class B extends A` |
+| Polymorphism  | Banyak bentuk dari 1 objek | `override` | `method()` diubah   |
+| Encapsulation | Sembunyikan data           | `private`  | `getter/setter`     |
+| Generics      | Tipe data fleksibel        | `<T>`      | `class Box<T>`      |
+
+---
+
+## RELASI ANTAR KELAS
+• Association : a relation
+• Composition: has-a relation, dependent
+• Aggregation: has-a relation, independent
+
+### 1. Association
+
+* **Definisi**: Hubungan antar class yang saling mengenal
+* **Karakteristik**: Long/short term
+* **Contoh**: `Student` memiliki `Teacher`
+Association: Orang berteman dengan orang lain (hubungan umum).
+
+### 2. Aggregation
+
+* **Definisi**: Class "memiliki" class lain, tapi bisa berdiri sendiri
+* **Contoh**: `Library` memiliki `Book`
+Aggregation: Perpustakaan punya banyak buku, tapi buku tetap bisa ada di luar perpustakaan.
+
+### 3. Composition
+
+* **Definisi**: Class "terdiri dari" class lain yang tidak bisa berdiri sendiri
+* **Contoh**: `House` dan `Room`
+Kalau manusia mati, jantungnya juga berhenti hidup.
+Manusia has-a Jantung → Composition
+
+### 4. Dependency
+
+* **Definisi**: Class menggunakan class lain sesaat
+* **Contoh**: `OrderService` menggunakan `Payment`
+Orang meminjam gunting di kantor
+→ Dia cuma pakai gunting sebentar, lalu dikembalikan.
+Tidak punya gunting, tidak menyimpannya → Dependency
+
+## CRC CARD
+
+* **Class**: Nama class
+* **Responsibility**: Tugas utama class
+* **Collaborator**: Class lain yang bekerja sama
+
+**Contoh:**
+Class: User
+Responsibility: login(), logout()
+Collaborator: AuthService, SessionManager
+
+## PRINSIP SOLID
+
+### SRP – Single Responsibility Principle
+
+* **Tujuan**: 1 class = 1 tanggung jawab
+* **Contoh**: Pisah `ReportGenerator` dan `ReportPrinter`
+Resepsionis kantor hanya tugasnya menerima tamu, bukan sambil bersihin toilet dan ngatur server.
+
+### OCP – Open Closed Principle
+
+* **Tujuan**: Class bisa diperluas, tidak diubah
+* **Contoh**: Tambah fitur lewat inheritance
+Stop kontak yang bisa ditambah colokan tambahan, tanpa buka colokan utama.
+
+### LSP – Liskov Substitution Principle
+
+* **Tujuan**: Subclass bisa menggantikan superclass
+* **Contoh**: `Rectangle` vs `Square` problem
+Kalau kamu biasa naik motor, terus ganti motor baru, seharusnya tetap bisa dikendarai dengan cara yang sama.
+
+### ISP – Interface Segregation Principle
+
+* **Tujuan**: Jangan buat interface besar
+* **Contoh**: `Bird` tidak perlu `swim()`
+Jangan kasih remote TV dengan 100 tombol ke nenek kamu, padahal dia cuma mau nyalain dan matiin TV.
+
+### DIP – Dependency Inversion Principle
+
+* **Tujuan**: High-level module tidak tergantung low-level
+* **Contoh**: Gunakan interface untuk `EmailService`
+Tukang listrik pasang saklar yang nyambung ke colokan universal, bukan cuma ke satu merk lampu doang.
+
+---
+
+## TIPE-TIPE CLASS KHUSUS
+
+| Tipe Class      | Fungsi Utama           | Ciri Sintaks     | Contoh Penggunaan                         |
+| --------------- | ---------------------- | ---------------- | ----------------------------------------- |
+| Abstract class  | Blueprint class        | `abstract class` | Superclass tanpa implementasi penuh       |
+| Interface       | Kontrak fungsi         | `interface`      | `implements`                              |
+| Enum            | Daftar konstanta       | `enum`           | `enum Color {RED, GREEN}`                 |
+| Anonymous class | Class dadakan          | Dalam metode     | `new Runnable() {...}`                    |
+| Inner class     | Class dalam class lain | `class Inner {}` | Digunakan untuk akses private class induk |
+
+---
+
+## CATATAN TAMBAHAN
+
+* **Best Practice**:
+
+  * Gunakan nama class yang deskriptif
+  * Pisahkan tanggung jawab class dengan jelas
+  * Gunakan access modifier dengan benar
+
+* **Kesalahan Umum**:
+
+  * Gunakan inheritance berlebihan
+  * Tidak gunakan encapsulation
+  * Class terlalu besar dan tidak reusable
+
+* **Tips Ujian / Interview**:
+
+  * Latihan menjelaskan inheritance + polymorphism dengan contoh
+  * Kuasai perbedaan interface vs abstract class
+  * Latihan baca class diagram UML dan hubungkan ke kode
