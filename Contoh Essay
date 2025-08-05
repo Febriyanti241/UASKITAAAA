@@ -1,0 +1,124 @@
+1. Flowchart: Mencetak Kelipatan dari Tiga Buah Bilangan Input (yang >200 dan <500)
+Deskripsi Proses:
+Input 3 bilangan dari user.
+
+Cek apakah masing-masing bilangan lebih dari 200 dan kurang dari 500.
+
+Jika ya, cetak kelipatan bilangan tersebut dalam rentang 200–500.
+
+Jika tidak, tampilkan pesan bahwa bilangan tidak valid.
+
+Flowchart (teks):
+┌────────────────────────┐
+│        Mulai           │
+├────────────────────────┤
+│ Input 3 bilangan A, B, C│
+├────────────────────────┤
+│ Untuk setiap bilangan X│
+├────────────────────────┤
+│ Apakah X > 200 AND < 500?│
+│     ├── Tidak ─────────▶│ Tampilkan "bilangan tidak valid"
+│     ▼                  │
+│ Cetak semua kelipatan X│
+│ dari 200 hingga <500   │
+├────────────────────────┤
+│ Ulangi untuk bilangan  │
+│ berikutnya             │
+├────────────────────────┤
+│ Jika semua selesai     │
+│        └──▶ Selesai    │
+└────────────────────────┘
+
+2. Contoh Inheritance dengan Polymorphism
+**Inheritance**
+class Hewan {
+    public void bersuara() {
+        System.out.println("Hewan bersuara");
+    }
+}
+
+class Kucing extends Hewan {
+    @Override
+    public void bersuara() {
+        System.out.println("Meong");
+    }
+}
+
+class Anjing extends Hewan {
+    @Override
+    public void bersuara() {
+        System.out.println("Guk guk");
+    }
+}
+
+**Polymorphism**
+public class Main {
+    public static void main(String[] args) {
+        Hewan h1 = new Kucing();
+        Hewan h2 = new Anjing();
+
+        h1.bersuara(); // Meong
+        h2.bersuara(); // Guk guk
+    }
+}
+
+3. Prinsip Interface Segregation
+✅ Makna:
+Sebuah class tidak boleh dipaksa untuk mengimplementasikan method yang tidak relevan.
+**Contoh Salah**
+interface Hewan {
+    void terbang();
+    void berenang();
+}
+
+class Burung implements Hewan {
+    public void terbang() { ... }
+    public void berenang() {
+        // dipaksa implementasi padahal tidak relevan karena burung tdk bisa berenang
+    }
+}
+
+4. Prinsip Open-Closed Principle
+✅ Makna:
+Kode harus terbuka untuk ekstensi tapi tertutup untuk modifikasi.
+**Contoh**
+abstract class Bentuk {
+    abstract double hitungLuas();
+}
+
+class Lingkaran extends Bentuk {
+    double r;
+    public double hitungLuas() {
+        return Math.PI * r * r;
+    }
+}
+
+class Persegi extends Bentuk {
+    double sisi;
+    public double hitungLuas() {
+        return sisi * sisi;
+    }
+}
+
+5. Perbedaan public, private, protected, dan default
+Modifier	Kelas Sendiri	Subclass	Package Sama	Package Berbeda
+public	✅	✅	✅	✅
+private	✅	❌	❌	❌
+protected	✅	✅	✅	❌ (kecuali subclass)
+default	✅	❌	✅	❌
+
+✅ Penjelasan Singkat:
+public: Bisa diakses dari mana saja. BUKAN BEST PRACTICE
+
+private: Hanya bisa diakses dari dalam class sendiri. BEST PRACTICE
+
+protected: Bisa diakses dari subclass dan package yang sama. BUKAN BEST PRACTICE, ini menggunakan getter setter
+
+default (tanpa modifier): Bisa diakses hanya di package yang sama.
+
+
+
+
+
+
+
