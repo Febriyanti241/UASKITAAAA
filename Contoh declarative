@@ -1,0 +1,15 @@
+List<Integer> angka = List.of(1, 2, 3, 4, 5, 6);
+int total = angka.stream()
+                 .filter(a -> a % 2 == 0)
+                 .mapToInt(a -> a)
+                 .sum();
+System.out.println("Total genap: " + total);
+
+
+🔢 KHUSUS UNTUK TIPE PRIMITIF STREAM (IntStream, DoubleStream, LongStream)
+Fungsi	Deskripsi Singkat
+.sum()	Menjumlahkan semua elemen
+.min()	Mengambil nilai terkecil (return OptionalInt)
+.max()	Mengambil nilai terbesar (return OptionalInt)
+.average()	Menghitung rata-rata (return OptionalDouble)
+.count()	Mengembalikan jumlah elemen dalam stream
