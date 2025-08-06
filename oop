@@ -1,0 +1,48 @@
+Rangkuman Singkat Materi OOP
+💡 Konsep Dasar OOP
+•	Class: Cetakan/blueprint untuk membuat objek. Berisi atribut (variabel) dan method (fungsi).
+•	Object: Hasil konkret dari class. Bisa punya data dan bisa melakukan aksi.
+•	Encapsulation: Menyembunyikan detail implementasi dan hanya menampilkan yang dibutuhkan (pakai private, getter, setter).
+•	Inheritance: Pewarisan sifat dari superclass ke subclass. Pakai keyword extends.
+•	Polymorphism: Objek bisa punya banyak bentuk, contohnya method overriding dan overloading.
+•	Abstraction: Menyembunyikan kompleksitas dengan menampilkan hanya fitur penting. Pakai abstract class atau interface.
+🧱 Pilar OOP
+•	Encapsulation: Data disembunyikan (contoh: private int usia;)
+•	Inheritance: Class mewarisi class lain (contoh: class Anak extends OrangTua {})
+•	Polymorphism: Banyak bentuk perilaku (contoh: @Override suara())
+•	Abstraction: Hanya fitur penting (contoh: abstract class Bentuk {})
+📦 Access Modifier
+•	private: hanya bisa diakses di class itu sendiri.
+•	default (tanpa keyword): bisa diakses di package yang sama.
+•	protected: bisa diakses oleh subclass.
+•	public: bisa diakses dari mana saja.
+🧩 Keyword Penting
+•	this: merujuk pada objek saat ini.
+•	super: merujuk ke superclass (bisa akses constructor/atribut superclass).
+•	final: variabel/method/class yang tidak bisa diubah.
+•	static: milik class, bukan objek.
+🔁 Polymorphism
+•	Overloading: method dengan nama sama tapi parameter beda.
+•	Overriding: method yang ditulis ulang di subclass.
+🧱 Abstraction Tools
+•	abstract class: bisa punya method abstrak dan non-abstrak.
+•	interface: semua method otomatis public abstract. Bisa implements banyak interface.
+💾 Constructor
+•	Method khusus yang dipanggil saat objek dibuat.
+•	Nama sama dengan class, tidak punya return type.
+💥 Exception Handling
+•	Gunakan try, catch, finally untuk menangani error runtime:
+•	try {
+   int a = 10 / 0;
+} catch (ArithmeticException e) {
+   System.out.println("Error: " + e.getMessage());
+}
+🔀 Casting
+•	Upcasting: Subclass → Superclass (aman).
+•	Downcasting: Superclass → Subclass (hati-hati, bisa error runtime).
+🧭 Class Diagram (UML)
+•	+ public
+•	- private
+•	# protected
+•	<<interface>> untuk interface
+•	Panah → untuk inheritance atau implementasi
