@@ -1,0 +1,60 @@
+upcasting digunakan ketika subclass ingin menggunakan method dari upclass
+sedangkan downcasting digunakan ketika ingin menggunakan method yang hanya ada di subclass
+
+class Animal {
+  public void animalSound() {
+    System.out.println("The animal makes a sound");
+  }
+}
+
+class Cat extends Animal {
+  @Override
+  public void animalSound() {
+    System.out.println("The cat says: meeow meeow");
+  }
+}
+
+class Dog extends Animal {
+  @Override
+  public void animalSound() {
+    System.out.println("The dog says: bow wow");
+  }
+  public void guarding(){
+    System.out.println("The dog says: I'm a guardian.");
+  }
+}
+
+public class AnimalPlay {
+  public static void main(String[] args) {
+    AnimalPlay animPlay = new AnimalPlay();
+    
+    Animal myAnimal = new Animal();  // Create a Animal object
+    Animal myCat = new Cat();  // Create a Cat object
+    Animal myDog = new Dog();  // Create a Dog object upcasted ke Animal
+
+//    ke 3 ini bisa jalan, karena myCat dan myDog bertipe animal, dan animal punya method play
+      animPlay.play(myAnimal);
+      animPlay.play(myCat);
+      animPlay.play(myDog);
+
+//    myAnimal = myCat;
+
+//    Dog dog  = (Dog) myDog;     // mengapa ini ok?
+//    Dog dog = null;
+//    Dog dogc = (Dog) myCat;     // mengapa compile error?
+//    if (myAnimal instanceof Dog)
+//      dog = (Dog) myAnimal;  // mengapa run-time error?
+
+//    animPlay.play(dog);
+
+//    myDog.animalSound();
+//    myDog.guarding(); // tidak boleh karena sudah di- upcasting
+//    ((Dog)myDog).guarding(); // diperbolehkan setelah di- downcasting
+//    ini runtime error karena myCat itu bukan dog, tapijava gatau
+//    ((Dog)myCat).guarding(); // bisa dicompile tapi run-time error, kenapa? 
+  }
+
+  public  void play(Animal anim){
+    anim.animalSound();
+  }
+}
