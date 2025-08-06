@@ -1,0 +1,248 @@
+Berikut adalah beberapa contoh yang menggambarkan penggunaan **Interface**, **Abstract Class**, dan **Generic Class** dalam Java.
+
+### 1. **Contoh Interface:**
+
+**Interface** adalah kontrak yang mendeklarasikan metode tanpa memberikan implementasinya. Kelas yang mengimplementasikan interface harus menyediakan implementasi untuk semua metode yang dideklarasikan dalam interface.
+
+java
+// Interface
+interface Animal {
+    void sound();  // Tidak ada implementasi di sini, hanya deklarasi
+    void sleep();
+}
+
+// Kelas yang mengimplementasikan interface
+class Dog implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+
+    @Override
+    public void sleep() {
+        System.out.println("Dog sleeps");
+    }
+}
+
+class Cat implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("Cat meows");
+    }
+
+    @Override
+    public void sleep() {
+        System.out.println("Cat sleeps");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal dog = new Dog();
+        dog.sound();
+        dog.sleep();
+
+        Animal cat = new Cat();
+        cat.sound();
+        cat.sleep();
+    }
+}
+
+**Penjelasan:**
+
+* Interface Animal mendeklarasikan metode sound() dan `sleep()`.
+* Kelas Dog dan Cat mengimplementasikan interface Animal dan menyediakan implementasi untuk metode tersebut.
+
+### 2. **Contoh Abstract Class:**
+
+**Abstract Class** adalah kelas yang tidak bisa diinstansiasi langsung dan dapat memiliki metode dengan implementasi penuh serta metode abstrak (tanpa implementasi). Kelas turunan harus mengimplementasikan metode abstrak.
+
+java
+// Abstract Class
+abstract class Shape {
+    // Metode abstrak (tanpa implementasi)
+    abstract double area();
+
+    // Metode konkret (dengan implementasi)
+    public void display() {
+        System.out.println("Displaying Shape");
+    }
+}
+
+// Kelas turunan dari Abstract Class
+class Circle extends Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+class Rectangle extends Shape {
+    private double length;
+    private double width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    double area() {
+        return length * width;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Shape circle = new Circle(5);
+        System.out.println("Circle area: " + circle.area());
+        circle.display();
+
+        Shape rectangle = new Rectangle(4, 6);
+        System.out.println("Rectangle area: " + rectangle.area());
+        rectangle.display();
+    }
+}
+
+**Penjelasan:**
+
+* Kelas Shape adalah kelas abstrak yang memiliki metode abstrak area() dan metode konkret `display()`.
+* Kelas Circle dan Rectangle mengimplementasikan metode area() sesuai dengan bentuk mereka.
+
+### 3. **Contoh Generic Class:**
+
+**Generic Class** memungkinkan Anda mendefinisikan kelas dengan parameter tipe data. Ini sangat berguna untuk membuat kelas yang dapat bekerja dengan berbagai tipe data.
+
+java
+// Generic Class
+class Box<T> {
+    private T value;
+
+    public Box(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Menggunakan Box dengan tipe Integer
+        Box<Integer> intBox = new Box<>(10);
+        System.out.println("Integer Box: " + intBox.getValue());
+
+        // Menggunakan Box dengan tipe String
+        Box<String> strBox = new Box<>("Hello, World!");
+        System.out.println("String Box: " + strBox.getValue());
+
+        // Menggunakan Box dengan tipe Double
+        Box<Double> doubleBox = new Box<>(3.14);
+        System.out.println("Double Box: " + doubleBox.getValue());
+    }
+}
+
+**Penjelasan:**
+
+* Kelas Box<T> adalah kelas generik yang dapat menyimpan nilai dari tipe data apa pun yang diberikan sebagai parameter tipe `T`.
+* Dalam kelas `Main`, Box digunakan dengan tipe `Integer`, `String`, dan `Double`.
+
+### 4. **Contoh Penggunaan Interface, Abstract Class, dan Generic dalam Satu Proyek:**
+
+Berikut adalah contoh gabungan untuk menggunakan **Interface**, **Abstract Class**, dan **Generic Class** dalam satu proyek:
+
+java
+// Interface
+interface Printable {
+    void print();
+}
+
+// Abstract Class
+abstract class Document {
+    String title;
+
+    Document(String title) {
+        this.title = title;
+    }
+
+    // Metode abstrak yang harus diimplementasikan oleh kelas turunan
+    abstract void displayContent();
+}
+
+// Kelas turunan Abstract Class
+class Report extends Document implements Printable {
+    String content;
+
+    Report(String title, String content) {
+        super(title);
+        this.content = content;
+    }
+
+    @Override
+    void displayContent() {
+        System.out.println("Content: " + content);
+    }
+
+    @Override
+    public void print() {
+        System.out.println("Printing report: " + title);
+    }
+}
+
+// Kelas generik untuk menyimpan berbagai jenis dokumen
+class Container<T extends Document> {
+    private T document;
+
+    public Container(T document) {
+        this.document = document;
+    }
+
+    public void displayDocument() {
+        document.displayContent();
+    }
+
+    public void printDocument() {
+        if (document instanceof Printable) {
+            ((Printable) document).print();
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Report report = new Report("Annual Report", "This is the content of the annual report.");
+
+        // Menggunakan Container untuk menyimpan dan menampilkan document
+        Container<Report> reportContainer = new Container<>(report);
+        reportContainer.displayDocument();
+        reportContainer.printDocument();
+    }
+}
+
+**Penjelasan:**
+
+* Printable adalah interface yang menyediakan metode `print()`.
+* Document adalah kelas abstrak dengan metode displayContent() dan atribut `title`.
+* Report adalah kelas yang mengimplementasikan Printable dan mewarisi dari `Document`. Kelas ini mengimplementasikan metode displayContent() dan `print()`.
+* Container<T> adalah kelas generik yang dapat menangani berbagai jenis dokumen yang merupakan turunan dari `Document`.
+
+---
+
+### **Ringkasan:**
+
+* **Interface**: Digunakan untuk mendeklarasikan kontrak yang harus diimplementasikan oleh kelas.
+* **Abstract Class**: Menyediakan implementasi parsial dan mendeklarasikan metode abstrak yang harus diimplementasikan oleh kelas turunan.
+* **Generic Class**: Membuat kelas yang dapat bekerja dengan berbagai tipe data, meningkatkan fleksibilitas dan pemeliharaan kode.
+
+Dengan menggunakan ketiga konsep ini, Anda bisa membuat kode yang lebih fleksibel, reusable, dan mudah untuk diperluas.
